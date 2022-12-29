@@ -1,8 +1,18 @@
-<h1>
-  <nav>
-    <a routerLink="/home">{{title}}</a>
-  </nav>
-</h1>
+
+
+<mat-toolbar color="primary">
+  <mat-icon aria-hidden="false" color="whitesmoke" a-label="Example home icon" fontIcon="home"></mat-icon>
+  <h1>
+    <nav>
+      <a class = title routerLink="/home">{{title}}</a>
+    </nav>
+  </h1>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
 <mat-slide-toggle color="primary" (click)="login()">Login</mat-slide-toggle>
 <br>
 <button mat-flat-button color="primary" (click)="initialiserLaBase()">PeuplerBD</button>
