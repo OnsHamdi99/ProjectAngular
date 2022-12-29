@@ -7,3 +7,38 @@
 .example-spacer {
     flex: 1 1 auto;
   }
+.mat-toolbar  {
+    background-color : #0174b8;
+}
+mat-sidenav { 
+    margin : 16px; 
+    width : 200px; 
+    background : #0174b8;
+    color : white;
+    border-radius : 10px;
+    padding : 16px; 
+    text-align : center;
+
+}
+mat-sidenav-container {
+    height : calc(0vh - 65px);
+    position : unset;
+
+}
+.menu-button {
+    width : 100%; 
+    display : flex;
+    align-items : center; 
+    justify-content : flex-start; 
+    font-size : 1rem;
+
+
+}
+.menu-button mat-icon {
+    margin-right : 8px ; 
+}
+
+.menu-button a {
+    color : white;
+    text-decoration: none;
+}
