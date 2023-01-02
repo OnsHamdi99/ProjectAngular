@@ -44,14 +44,7 @@ let port = process.env.PORT || 8010;
 const prefix = '/api';
 
 app.route(prefix + '/assignments')
-  .get(assignment.getAssignments);
-
-app.route(prefix + '/assignments/:id')
-  .get(assignment.getAssignment)
-  .delete(assignment.deleteAssignment);
-
-
-app.route(prefix + '/assignments')
+  .get(assignment.getAssignments)
   .post(assignment.postAssignment)
   .put(assignment.updateAssignment);
 
@@ -60,5 +53,3 @@ app.listen(port, "0.0.0.0");
 console.log('Serveur démarré sur http://localhost:' + port);
 
 module.exports = app;
-
-

@@ -26,6 +26,9 @@ import { AuthGuard } from './shared/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from "@angular/material/sidenav";
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 const routes:Routes = [
   {path: '', component: AssignmentsComponent},
   {path: 'home', component: AssignmentsComponent},
@@ -57,9 +60,10 @@ const routes:Routes = [
     FormsModule,
     RouterModule.forRoot(routes), 
     HttpClientModule, 
-    MatToolbarModule
+    MatToolbarModule,MatTableModule,MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

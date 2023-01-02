@@ -1,76 +1,60 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
-import { bdInitialAssignments } from '../shared/data';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { catchError, map, merge, startWith, switchMap, of as observableOf, BehaviorSubject } from 'rxjs';
+
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
   styleUrls: ['./assignments.component.css'],
 })
-export class AssignmentsComponent implements OnInit {
-  titre = 'Mon application sur les assignments';
 
+export class AssignmentsComponent implements OnInit, AfterViewInit {
   assignments!: Assignment[];
-  page: number=1;
-  limit: number=10;
-  totalDocs: number=0;
-  totalPages: number=0;
-  hasPrevPage: boolean=false;
-  prevPage: number=0;
-  hasNextPage: boolean=false;
-  nextPage: number=0;
- 
-  assignmentSelectionne!: Assignment;
+  displayedColumns: string[] = ['nom', 'matiere', 'dateDeRendu', 'rendu'];
+  page: number = 1;
+  limit: number = 10;
+  totalDocs: number = 0;
+  totalPages: number = 0;
+  hasPrevPage: boolean = false;
+  prevPage: number = 0;
+  hasNextPage: boolean = false;
+  nextPage: number = 0;
+  @ViewChild('paginator') paginator!: MatPaginator;
+  dataSource: MatTableDataSource<Assignment> = new MatTableDataSource<Assignment>();
 
-  constructor(private assignmentsService: AssignmentsService) {}
+  constructor(private assignmentsService: AssignmentsService) {
 
-  ngOnInit(): void {
-    /*this.assignmentsService
-      .getAssignments()
-      .subscribe((tableauDesAssignmentsObservable) => {
-        this.assignments = tableauDesAssignmentsObservable;
-      }); */
-      this.getAssignments();
+  }
 
- 
+  ngOnInit() {
+    this.dataSource.paginator = this.paginator;
   }
-  getAssignments(){
-    this.assignmentsService.getAssignmentsPagine(this.page, this.limit)
-    .subscribe(data => {
-      this.assignments = data.docs;
-      this.page = data.page;
-      this.limit = data.limit;
-      this.totalDocs = data.totalDocs;
-      this.totalPages = data.totalPages;
-      this.hasPrevPage = data.hasPrevPage;
-      this.prevPage = data.prevPage;
-      this.hasNextPage = data.hasNextPage;
-      this.nextPage = data.nextPage;
-      console.log("données reçues");
-    });
-  }
-  onAssignmentClicke(assignment: Assignment) {
-    this.assignmentSelectionne = assignment;
-  }
-  pageSuivante(){
-    if(this.hasNextPage){
-    this.page = this.nextPage;
-    this.getAssignments();
-  }
-}
-pagePrecedente(){
-  if(this.hasPrevPage){
-    this.page= this.prevPage;
-    this.getAssignments();
-  }
-}
-premierePage(){
-  this.page=1;
-  this.getAssignments();
-}
-dernierePage(){
-  this.page= this.totalPages;
-  this.getAssignments();
 
-}
+  ngAfterViewInit() {
+    this.loadData();
+  }
+
+  loadData() {
+    this.paginator.page
+      .pipe(startWith({}),
+        switchMap(() => {
+          return this.assignmentsService.getAssignmentsPagine(
+            this.paginator.pageIndex,
+            this.paginator.pageSize)
+        }),
+        map(data => {
+          this.paginator.length = data.totalDocs;
+          return data.docs;
+        }),
+        catchError(() => {
+          return observableOf([]);
+        })
+      ).subscribe(data => {
+        console.log("CALL API DONE");
+        this.dataSource.data = data
+      });
+  }
 }

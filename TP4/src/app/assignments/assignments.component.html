@@ -1,40 +1,32 @@
-
 <main class="container">
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="nom">
+        <th mat-header-cell *matHeaderCellDef> Nom </th>
+        <td mat-cell *matCellDef="let assignment"> {{assignment.nom}} </td>
+      </ng-container>
 
-  <div class="AjouterBtn">
-    <a routerLink="/add">
-      <button mat-flat-button color="accent">
-        Ajouter Assignment
-      </button>
-    </a>
-  </div>
+      <ng-container matColumnDef="matiere">
+        <th mat-header-cell *matHeaderCellDef> Matiere </th>
+        <td mat-cell *matCellDef="let assignment"> {{assignment.matiere}} </td>
+      </ng-container>
 
-  <h1>Liste des devoirs à rendre (assignments) :</h1>
-  <p>Nombre total d'assignments : {{totalDocs}}</p>
-  <p>Nombre total de pages : {{totalPages}}</p>
-  <p>Nombre d'assignments par page : 1 <input type="range" min=1 max=100 value="10" (change)="getAssignments()" [(ngModel)]="limit" >{{limit}}</p>
-  <div class="paginationBtn">
-  <button mat-raised-button color="primary" (click)="premierePage()" [disabled]="page===1"> Première</button>&nbsp;
-  <button mat-raised-button (click)="pagePrecedente()" [disabled]="!hasPrevPage"> Précédent </button>&nbsp;
-  <button mat-raised-button (click)="pageSuivante()" [disabled]="!hasNextPage"> Suivant</button>&nbsp;
-  <button mat-raised-button color="primary" (click)="dernierePage()" [disabled]="page===totalPages"> Dernière </button>
+      <ng-container matColumnDef="dateDeRendu">
+        <th mat-header-cell *matHeaderCellDef> Date de rendu </th>
+        <td mat-cell *matCellDef="let assignment"> {{assignment.dateDeRendu}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="rendu">
+        <th mat-header-cell *matHeaderCellDef> Rendu </th>
+        <td mat-cell *matCellDef="let assignment"> {{assignment.rendu}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+      aria-label="Select page of periodic elements">
+    </mat-paginator>
   </div>
-  <mat-list *ngFor="let a of assignments">
-    <nav><a routerLink="/assignment/{{a.id}}">
-        <h3 mat-subheader>{{a.dateDeRendu|date}}</h3>
-        <mat-list-item (click)="onAssignmentClicke(a)">
-          <p *ngIf="a.rendu; else nonsoumis">
-            {{a.nom}}
-            rendu : {{a.rendu}}.
-          </p>
-          <ng-template #nonsoumis>
-            <p>
-              {{a.nom}}, n'a pas été rendu à temps
-              (date : {{a.dateDeRendu|date}})
-            </p>
-          </ng-template>
-          <mat-divider></mat-divider>
-        </mat-list-item>
-      </a></nav>
-  </mat-list>
 </main>
