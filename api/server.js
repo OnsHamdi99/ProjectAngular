@@ -33,7 +33,10 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   next();
 });
-
+///////////////////////////
+var AuthController = require('./auth/AuthController');
+app.use('/api/auth', AuthController);
+///////////////////////////////////////////////
 // Pour les formulaires
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
