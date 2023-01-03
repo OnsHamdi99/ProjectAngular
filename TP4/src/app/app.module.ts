@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { AssignmentsDetailsComponent } from './assignments/assignments-details/assignments-details.component';
@@ -28,6 +29,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { PopupComponent } from './popup/popup.component';
 
 const routes:Routes = [
   {path: '', component: AssignmentsComponent},
@@ -47,7 +49,7 @@ const routes:Routes = [
     RenduDirective,
     AddAssignmentComponent,
     EditAssignmentComponent,
-
+    PopupComponent
   ],
   imports: [
     MatSidenavModule,
@@ -59,11 +61,12 @@ const routes:Routes = [
     MatCardModule, MatCheckboxModule, MatSlideToggleModule,
     FormsModule,
     RouterModule.forRoot(routes), 
-    HttpClientModule, 
+    HttpClientModule, MatDialogModule,
     MatToolbarModule,MatTableModule,MatPaginatorModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }],
+  bootstrap: [AppComponent],
+  entryComponents: [PopupComponent]
 })
 
 export class AppModule { }

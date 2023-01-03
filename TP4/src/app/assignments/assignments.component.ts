@@ -4,6 +4,8 @@ import { Assignment } from './assignment.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { catchError, map, merge, startWith, switchMap, of as observableOf, BehaviorSubject } from 'rxjs';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
   selector: 'app-assignments',
@@ -13,7 +15,7 @@ import { catchError, map, merge, startWith, switchMap, of as observableOf, Behav
 
 export class AssignmentsComponent implements OnInit, AfterViewInit {
   assignments!: Assignment[];
-  displayedColumns: string[] = ['nom', 'matiere', 'dateDeRendu', 'rendu'];
+  displayedColumns: string[] = ['nom', 'matiere', 'dateDeRendu', 'rendu', 'button'];
   page: number = 1;
   limit: number = 10;
   totalDocs: number = 0;
@@ -25,7 +27,7 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   @ViewChild('paginator') paginator!: MatPaginator;
   dataSource: MatTableDataSource<Assignment> = new MatTableDataSource<Assignment>();
 
-  constructor(private assignmentsService: AssignmentsService) {
+  constructor(private assignmentsService: AssignmentsService, public dialog: MatDialog) {
 
   }
 
@@ -56,5 +58,24 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
         console.log("CALL API DONE");
         this.dataSource.data = data
       });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  openDialog(assignment: any) {
+    const dialogRef = this.dialog.open(PopupComponent, {
+      data: { assignment }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

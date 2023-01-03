@@ -6,6 +6,27 @@
   margin: 50px 235px 50px 235px;
 }
 
+.mat-form-field {
+  margin: 10px;
+  font-size: 16px;
+  width: 98%;
+}
+
 table {
   width: 100%;
+}
+
+mat-icon{
+  font-size: 30px;
+}
+button {
+  background-color: none;
+  background: none;
+  border: none;
+  border: 50%;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  
 }
