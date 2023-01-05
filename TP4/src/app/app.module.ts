@@ -30,6 +30,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PopupComponent } from './popup/popup.component';
+import { LoginComponent } from './login/login.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 const routes:Routes = [
@@ -41,7 +43,8 @@ const routes:Routes = [
     path: 'assignment/:id/edit',
     component: EditAssignmentComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  {path : 'login', component : LoginComponent},
 ]
 @NgModule({
   declarations: [
@@ -50,7 +53,9 @@ const routes:Routes = [
     RenduDirective,
     AddAssignmentComponent,
     EditAssignmentComponent,
-    PopupComponent
+    PopupComponent,
+    LoginComponent,
+    UserProfileComponent
   ],
   imports: [
     MatSidenavModule,
