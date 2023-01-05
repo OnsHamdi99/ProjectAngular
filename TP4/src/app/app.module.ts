@@ -15,7 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
-
+import {MatSortModule} from '@angular/material/sort';
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { AssignmentsDetailsComponent } from './assignments/assignments-details/assignments-details.component';
 import { RenduDirective } from './shared/rendu.directive';
@@ -30,6 +30,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PopupComponent } from './popup/popup.component';
+
 
 const routes:Routes = [
   {path: '', component: AssignmentsComponent},
@@ -59,7 +60,7 @@ const routes:Routes = [
     MatInputModule, MatFormFieldModule,
     MatDatepickerModule, MatNativeDateModule, MatListModule,
     MatCardModule, MatCheckboxModule, MatSlideToggleModule,
-    FormsModule,
+    FormsModule, MatSortModule,
     RouterModule.forRoot(routes), 
     HttpClientModule, MatDialogModule,
     MatToolbarModule,MatTableModule,MatPaginatorModule

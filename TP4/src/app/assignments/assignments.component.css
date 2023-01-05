@@ -16,6 +16,10 @@ table {
   width: 100%;
 }
 
+th.mat-sort-header-sorted {
+  color: black;
+}
+
 mat-icon{
   font-size: 30px;
 }
