@@ -9,7 +9,7 @@ mongoose.Promise = global.Promise;
 
 // remplacer toute cette chaine par l'URI de connexion à votre propre base dans le cloud s
 const uri = 'mongodb+srv://onshamdi:mdp@cluster0.v7t1onk.mongodb.net/assignments?retryWrites=true&w=majority';
-
+//const uri ="mongodb+srv://onshamdi:mdp@cluster0.v7t1onk.mongodb.net/?retryWrites=true&w=majority";
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -33,10 +33,7 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   next();
 });
-///////////////////////////
-var AuthController = require('./auth/AuthController');
-app.use('/api/auth', AuthController);
-///////////////////////////////////////////////
+
 // Pour les formulaires
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -54,5 +51,16 @@ app.route(prefix + '/assignments')
 // On démarre le serveur
 app.listen(port, "0.0.0.0");
 console.log('Serveur démarré sur http://localhost:' + port);
+///////////////////
+//début modifs
 
+global.__root   = __dirname + '/'; 
+var UserController = require(__root + 'user/UserController');
+app.use('/api/users', UserController);
+
+var AuthController = require(__root + 'auth/AuthController');
+app.use('/api/auth', AuthController);
+
+
+/////
 module.exports = app;

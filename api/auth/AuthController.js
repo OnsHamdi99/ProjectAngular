@@ -6,7 +6,7 @@ var VerifyToken = require('./VerifyToken');
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
-var User = require('../model/user');
+var User = require('../user/User');
 
 /**
  * Configure JWT
@@ -42,12 +42,15 @@ router.get('/logout', function(req, res) {
 });
 
 router.post('/register', function(req, res) {
-
-  var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+  var { name, email, password } = req.body;
+  if (!name || !email || !password) {
+    return res.status(400).send("Bad parameters");
+  }
+  var hashedPassword = bcrypt.hashSync(password, 8);
 
   User.create({
-    name : req.body.name,
-    email : req.body.email,
+    name : name,
+    email : email,
     password : hashedPassword
   }, 
   function (err, user) {
@@ -55,7 +58,7 @@ router.post('/register', function(req, res) {
 
     // if user is registered without errors
     // create a token
-    var token = jwt.sign({ id: user._id }, config.secret, {
+    var token = jwt.sign({ id: user._id }, config.secret , {
       expiresIn: 86400 // expires in 24 hours
     });
 
@@ -73,5 +76,11 @@ router.get('/me', VerifyToken, function(req, res, next) {
   });
 
 });
+
+router.get('/all', function (req, res, next) {
+  User.find().exec().then(items => {
+    res.status(200).json(items);
+  })  
+})
 
 module.exports = router;
