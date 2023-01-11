@@ -1,1 +1,12 @@
-<p>login works!</p>
+<form ngForm (submit)="login(email,password); loginForm.reset()" #loginForm class="connectForm" >
+    <mat-form-field>
+        <input matInput[(ngModel)]="email" placeholder="Votre email" required>
+        <input matInput[(ngModel)]="password" placeholder="Votre mot de passe" required>
+
+    </mat-form-field> 
+
+<button mat-stroked-button color = "primary"> 
+    Connexion
+</button>
+
+</form>
