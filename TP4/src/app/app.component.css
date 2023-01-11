@@ -1,5 +1,9 @@
-.container {
-    margin: 50px 235px 50px 235px;
+.content {
+    margin: 0;
+    min-height: calc(100vh - 64px - 64px - 30px - 30px);
+    margin-top: 94px;
+    margin-bottom: 30px;
+
 }
 
 .title {
@@ -20,14 +24,15 @@
     left: 30px;
   }
 
-
 .mat-toolbar  {
     background-color : #0174b8;
-    position: sticky;
+    position: fixed;
+    top: 0%;
+    max-height: 64px;
+    z-index: 9999;
 }
 
-mat-sidenav { 
-    margin : 16px; 
+mat-sidenav {
     width : 200px; 
     background : #0174b8;
     color : white;
@@ -35,8 +40,10 @@ mat-sidenav {
     padding : 16px; 
     text-align : center;
     position : absolute;
-    top: 64px;
+    top: 80px;
+    left: 16px;
 }
+
 mat-sidenav-container {
     height : calc(0vh - 65px);
     position : unset;
@@ -57,3 +64,22 @@ mat-sidenav-container {
     color : white;
     text-decoration: none;
 }
+
+.footer {
+    margin: 0px;
+    padding: 15px;
+    /* position: fixed; */
+    bottom: 0;
+    width: calc(100vw - 30px);
+    height: 34px;
+    background-color: #0174b8;
+    color: white;
+    /* text-align: center; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    }
+
+    

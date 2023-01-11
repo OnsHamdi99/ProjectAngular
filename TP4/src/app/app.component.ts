@@ -12,7 +12,8 @@ import {BreakpointObserver} from "@angular/cdk/layout"
 })
 export class AppComponent {
   title = 'Application de gestion des assignments';
-  
+  footer = 'GitHub';
+
   constructor(private observer:BreakpointObserver,private authService:AuthService, private router:Router, private assignmentService: AssignmentsService) {}
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;

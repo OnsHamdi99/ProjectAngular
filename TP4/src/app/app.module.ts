@@ -65,7 +65,7 @@ const routes:Routes = [
     MatInputModule, MatFormFieldModule,
     MatDatepickerModule, MatNativeDateModule, MatListModule,
     MatCardModule, MatCheckboxModule, MatSlideToggleModule,
-    FormsModule, MatSortModule,
+    FormsModule, MatSortModule, 
     RouterModule.forRoot(routes), 
     HttpClientModule, MatDialogModule,
     MatToolbarModule,MatTableModule,MatPaginatorModule
