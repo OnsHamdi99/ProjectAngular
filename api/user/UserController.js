@@ -9,6 +9,7 @@ var User = require('./User');
 
 // CREATES A NEW USER
 router.post('/', function (req, res) {
+    console.log("here");
     User.create({
             name : req.body.name,
             email : req.body.email,

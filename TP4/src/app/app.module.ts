@@ -47,6 +47,7 @@ const routes:Routes = [
     canActivate: [AuthGuard]
   },
   {path : 'login', component : LoginComponent},
+  {path : "register", component : UserProfileComponent},
 ]
 @NgModule({
   declarations: [

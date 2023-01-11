@@ -1,1 +1,20 @@
-<p>user-profile works!</p>
+<form ngForm (submit)="register(); loginForm.reset()" #loginForm class="connectForm" >
+    <mat-form-field>
+        
+        <input matInput [(ngModel)]="email" name="email" placeholder="Votre email" required>
+    </mat-form-field> 
+    <mat-form-field>
+        
+        <input matInput [(ngModel)]="username" name="username" placeholder="Votre username" required>
+    </mat-form-field> 
+
+        <mat-form-field>
+        <input matInput [(ngModel)]="password" name="password" placeholder="Votre mot de passe" required>
+   
+    </mat-form-field> 
+
+<button mat-stroked-button color = "primary"> 
+    Création de Compte
+</button>
+
+</form>
