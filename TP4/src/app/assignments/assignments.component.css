@@ -2,8 +2,18 @@
   align-self: flex-start;
 }
 
-.mat-elevation-z8 {
+/* .mat-elevation-z8 {
+  width: 970px;
+  padding-left: 235px;
+  padding-right: 235px;
+  margin: 0;
+} */
+
+.example-container {
   margin: 0px 235px 0px 235px;
+  height: 450px;
+  max-width: 100%;
+  overflow: auto;
 }
 
 .mat-form-field {
@@ -18,6 +28,7 @@ table {
 
 th.mat-sort-header-sorted {
   color: black;
+
 }
 
 mat-icon{
