@@ -17,15 +17,7 @@ export class AppComponent {
   constructor(private observer:BreakpointObserver,private authService:AuthService, private router:Router, private assignmentService: AssignmentsService) {}
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
-  login() {
-    if(!this.authService.loggedIn) {
-      this.authService.logIn();
-    } else {
-      this.authService.logOut();
-      this.router.navigate(['/home']);
 
-    }
-  }
   ngAfterViewInit(){
     this.observer.observe(['(min-width:0px)'])
     .subscribe((res) => {

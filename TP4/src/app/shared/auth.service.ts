@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -6,11 +7,18 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   loggedIn=false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  logIn() {
-    this.loggedIn = true;
-  }
+  isLoggedIn() {
+    const token = localStorage.getItem('jwt_token');
+      if (token) {
+        return true;
+      } else {
+        this.router.navigate(['/login']);
+        return false;
+      }
+    }
+
 
   logOut() {
     this.loggedIn = false;
