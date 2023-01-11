@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,17 +13,18 @@ export class LoginComponent implements OnInit {
   url = "http://localhost:8010/api/auth/AuthContoller";
   constructor(private http: HttpClient, private router:Router,private snackBar: MatSnackBar) { }
 
+
   ngOnInit(): void {
   }
-  login(email : string, password:string){
-    const body = { email: email, password: password };
+  login(){
+    const body = { email: this.email, password: this.password };
     this.http.post(this.url + '/login', body).subscribe(
       response => { 
         this.router.navigate(['/home']);
       }, 
       (error) => {
-      this.snackBar.open("Identifiants faux", "Dismiss", {duration: 2000}); } 
-    )
+     this.snackBar.open("Identifiants faux", "Fermer", {duration: 2000}); } 
+   )
   }
   
 

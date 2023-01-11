@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,6 +34,7 @@ import { PopupComponent } from './popup/popup.component';
 import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 const routes:Routes = [
   {path: '', component: AssignmentsComponent},
@@ -58,6 +60,7 @@ const routes:Routes = [
     UserProfileComponent
   ],
   imports: [
+    MatSnackBarModule,
     MatSidenavModule,
     BrowserModule,
     BrowserAnimationsModule,
