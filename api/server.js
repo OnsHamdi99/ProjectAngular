@@ -48,19 +48,20 @@ app.route(prefix + '/assignments')
   .post(assignment.postAssignment)
   .put(assignment.updateAssignment);
 
-// On démarre le serveur
-app.listen(port, "0.0.0.0");
-console.log('Serveur démarré sur http://localhost:' + port);
-///////////////////
+
 //début modifs
 
 global.__root   = __dirname + '/'; 
 var UserController = require(__root + 'user/UserController');
 app.use('/api/users', UserController);
-
+console.log(123)
 var AuthController = require(__root + 'auth/AuthController');
 app.use('/api/auth', AuthController);
 
+// On démarre le serveur
+app.listen(port);
+console.log('Serveur démarré sur http://localhost:' + port);
+///////////////////
 
 /////
 module.exports = app;

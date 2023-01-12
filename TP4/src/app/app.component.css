@@ -31,10 +31,11 @@
     max-height: 64px;
     z-index: 9999;
 }
+
 .inscriptionBtn{ 
     background : #0174b8;
     color : white;
-    left : 15px;
+    left : 1250px;
 }
 
 mat-sidenav {
@@ -47,6 +48,7 @@ mat-sidenav {
     position : absolute;
     top: 80px;
     left: 16px;
+    bottom: 80px;
 }
 
 mat-sidenav-container {
