@@ -36,14 +36,14 @@ Exécutez les commandes suivantes :
 
 De même : 
  - cd ..
- - cd main
+ - cd TP4
  - ng serve 
 
 Connectez vous à l'adresse : 
 http://localhost:4200/
 
 
-##Tutoriels suivis 
+## Tutoriels suivis 
 - "Securing Node.js RESTful APIs with JSON Web Tokens" par Adnan Rahić sur freecodecamp.org
 - "Create a Responsive Sidebar Menu with Angular Material" par Zoaib Khan sur zoaibkhan.com 
 - Différents outils et ressources sur Angular.io 
