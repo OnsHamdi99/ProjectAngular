@@ -3,6 +3,7 @@ import { Router} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { map } from 'rxjs/operators';
+import { AuthService } from '../shared/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   password : string = ""; 
   email : string="";
   url = "http://localhost:8010/api/auth/";
-  constructor(private http: HttpClient, private router:Router,private snackBar: MatSnackBar) { }
+  constructor(private http: HttpClient, private router:Router,private snackBar: MatSnackBar, private authService:  AuthService ) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('jwt_token', token);
         this.router.navigate(['/home']);
         this.snackBar.open("Bienvenue", "Fermer", {duration: 5000});
+        this.authService.loggedIn = true;
       }, 
       (error) => {
      this.snackBar.open("Identifiants faux", "Fermer", {duration: 5000}); } 

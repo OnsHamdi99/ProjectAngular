@@ -25,10 +25,8 @@ export class AuthService {
   }
 
   // renvoie une promesse qui est résolue si l'utilisateur est loggué
-  isAdmin() {
-    const isUserAdmin = new Promise((resolve, reject) => {
-      resolve(this.loggedIn);
-    });
-    return isUserAdmin;
+  logout() {
+    localStorage.removeItem('jwt_token');
+    this.router.navigate(['/login']);
   }
 }

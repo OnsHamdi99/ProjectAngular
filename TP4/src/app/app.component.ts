@@ -5,6 +5,8 @@ import { AssignmentsService } from './shared/assignments.service';
 import { AuthService } from './shared/auth.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import {BreakpointObserver} from "@angular/cdk/layout"
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -34,5 +36,8 @@ export class AppComponent {
   initialiserLaBase (){
     this.assignmentService.peuplerBD();
 
+  }
+  getloggedIn(){
+    return  this.authService.loggedIn;
   }
 }
