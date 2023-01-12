@@ -40,4 +40,7 @@ export class AppComponent {
   getloggedIn(){
     return  this.authService.loggedIn;
   }
+  logout(){
+    this.authService.logout();
+  }
 }

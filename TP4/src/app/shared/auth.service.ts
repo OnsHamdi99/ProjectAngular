@@ -20,13 +20,13 @@ export class AuthService {
     }
 
 
-  logOut() {
-    this.loggedIn = false;
-  }
+    logout() {
+      localStorage.removeItem('jwt_token');
+      this.router.navigate(['/login']);
+      this.loggedIn=false;
+
+    }
 
   // renvoie une promesse qui est résolue si l'utilisateur est loggué
-  logout() {
-    localStorage.removeItem('jwt_token');
-    this.router.navigate(['/login']);
-  }
+
 }
