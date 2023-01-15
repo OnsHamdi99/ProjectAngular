@@ -10,11 +10,7 @@
     <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
     <mat-icon *ngIf="sidenav.opened">close</mat-icon>
   </button>
-
-  <button routerLink="/register" mat-stroked-button class="inscriptionBtn" *ngIf="!getloggedIn()">Inscription</button>
-
 </mat-toolbar>
-
 
 <mat-sidenav-container>
   <mat-sidenav #sidenav="matSidenav">
@@ -24,7 +20,7 @@
     </button>
     <button mat-button class="menu-button" *ngIf="!getloggedIn()">
       <mat-icon> directions_walk</mat-icon>
-      <a (click)="sidenav.close();" routerLink="/login" color="white">Login</a>
+      <a routerLink="/login" color="white">Login</a>
     </button>
     <button mat-button class="menu-button" *ngIf="getloggedIn()">
       <mat-icon>exit_to_app</mat-icon>
@@ -35,6 +31,8 @@
 </mat-sidenav-container>
 
 <div class="content">
+  <button routerLink="/register" mat-flat-button class="inscriptionBtn" *ngIf="!getloggedIn()">Inscription</button>
+  <button  routerLink="/add" mat-flat-button class ="inscriptionBtn" *ngIf="getloggedIn()">Ajouter un devoir</button>
 <router-outlet></router-outlet>
 </div>
 

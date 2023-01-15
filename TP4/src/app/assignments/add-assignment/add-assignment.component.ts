@@ -13,6 +13,7 @@ export class AddAssignmentComponent implements OnInit {
   // du formulaire
   nomDevoir: string = '';
   dateDeRendu!: Date;
+  nomMatiere: string ="";
 
   constructor(private assignmentsService:AssignmentsService) {}
 
@@ -23,6 +24,7 @@ export class AddAssignmentComponent implements OnInit {
     const newAssignment = new Assignment();
     newAssignment.id = Math.floor(Math.random()*1000);
     newAssignment.nom = this.nomDevoir;
+    newAssignment.matiere = this.nomMatiere;
     newAssignment.dateDeRendu = this.dateDeRendu;
     newAssignment.rendu = false;
 

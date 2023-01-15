@@ -8,7 +8,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { PopupComponent } from '../popup/popup.component';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {MatSort, Sort} from '@angular/material/sort';
-
+import { Router} from '@angular/router';
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
@@ -31,7 +31,7 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<Assignment> = new MatTableDataSource<Assignment>();
 
   constructor(private assignmentsService: AssignmentsService, public dialog: MatDialog, 
-    private _liveAnnouncer: LiveAnnouncer) {
+    private _liveAnnouncer: LiveAnnouncer, private router:Router) {
   }
 
   ngOnInit() {
@@ -90,4 +90,6 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+
+
 }

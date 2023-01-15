@@ -26,10 +26,6 @@ table {
   width: 100%;
 }
 
-th {
-  z-index: 2!important;
-}
-
 th.mat-sort-header-sorted {
   color: black;
 
@@ -48,4 +44,9 @@ button {
   padding: 0;
   margin: 0;
   
+}
+.inscriptionBtn{ 
+    background : #00446c;
+    color : white;
+    left : 15px;
 }
