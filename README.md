@@ -34,8 +34,7 @@ Exécutez les commandes suivantes :
  - cd api 
  - node server.js
 
-De même : 
- - cd ..
+De même dans un nouveau terminal : 
  - cd TP4
  - ng serve 
 
