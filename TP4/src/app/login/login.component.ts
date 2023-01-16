@@ -12,7 +12,7 @@ import { AuthService } from '../shared/auth.service';
 export class LoginComponent implements OnInit {
   password : string = ""; 
   email : string="";
-  url = "http://localhost:8010/api/auth/";
+  url = "https://ovt-project-angular-server.onrender.com/api/auth/";
   constructor(private http: HttpClient, private router:Router,private snackBar: MatSnackBar, private authService:  AuthService ) { }
 
   ngOnInit(): void {
