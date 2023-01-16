@@ -17,7 +17,7 @@ export class UserProfileComponent implements OnInit {
     password : string = ""; 
     email : string="";
     username : string="";
-    url = "http://localhost:8010/api/auth/";
+    url =  "https://ovt-project-angular-server.onrender.com/api/auth/";
 
     register(){
       const body = { email: this.email, name : this.username, password: this.password };
