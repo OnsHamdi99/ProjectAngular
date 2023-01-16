@@ -6,7 +6,8 @@ Projet SCRUD AngularJS réalisé par :
 
 Opérations réalisées sur des assignments. 
 Certaines opérations sont accessibles qu'après connexion et/ou inscription, grâce à l'utilisation de JWT. 
-
+### Vidéo de présentation des parties 
+Ons : https://youtu.be/qfmb8jlVOcQ
 ## Getting Started
 
 Projet hébergé à l'adresse suivante : 
