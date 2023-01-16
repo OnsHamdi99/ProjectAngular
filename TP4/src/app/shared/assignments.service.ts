@@ -21,9 +21,25 @@ export class AssignmentsService {
     return this.http.get<Assignment[]> (this.url);
   }
 
-  getAssignmentsPagine(page:number, limit:number):Observable <any>{
-    return this.http.get<any>(this.url + "?page=" + page + "&limit=" + limit);
+  getAssignmentsPagine(page:number, limit:number, query: {nom:string, matiere:string, rendu:string}):Observable <any>{
+    var queryString = this.generateQueryString(query);
+    page++;
+    return this.http.get<any>(this.url + "?page=" + page + "&limit=" + limit + "&"+queryString);
   }
+
+  //create a query string from an object
+  generateQueryString(query: any):string {
+    let queryString = "";
+    for (const key in query) {
+      if (query.hasOwnProperty(key)) {
+        const value = query[key];
+        if (value != null)
+          queryString += key + "=" + value + "&";
+      }
+    }
+    return queryString;
+  }
+
   // renvoie comme Observable l'assignment dont l'id est passé
   // en paramètre, ou undefined s'il n'existe pas
   getAssignment(id:number):Observable<Assignment> {

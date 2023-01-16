@@ -1,7 +1,22 @@
 let Assignment = require('../model/assignment');
 
 function getAssignments(req, res) {
-    var aggregateQuery = Assignment.aggregate();
+    const { nom, matiere, rendu } = req.query;
+    const query = {};
+    
+    if (matiere) {
+      query.matiere = matiere;
+    }
+    if (rendu) {
+      query.rendu = rendu === 'true' || rendu === '1' || rendu === 'vrai';
+    }
+    if (nom) {
+      query.nom = { $regex: nom, $options: 'i' };
+    }
+
+    var aggregateQuery = Assignment
+      .aggregate()
+      .match(query)
     Assignment.aggregatePaginate(aggregateQuery,
       {
         page: parseInt(req.query.page) || 1,

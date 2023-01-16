@@ -7,4 +7,5 @@ export class Assignment {
   matiere!: string;
   note!: Number;
   remarque!: string;
+  photo!: string;
 }

@@ -16,19 +16,19 @@ import { Router} from '@angular/router';
 })
 
 export class AssignmentsComponent implements OnInit, AfterViewInit {
+  labelPosition: string = '';
+  selectedValue: string = 'all';
   assignments!: Assignment[];
+  filtre: number= 0;
+  listeMatieres: string[] = ['Maths', 'Physique', 'Chimie', 'Anglais', 'Italien', 'BDD', 'Angular', 'Réseaux', 'Marketing'];
   displayedColumns: string[] = ['nom', 'matiere', 'dateDeRendu', 'rendu', 'button'];
-  page: number = 1;
-  limit: number = 10;
-  totalDocs: number = 0;
-  totalPages: number = 0;
-  hasPrevPage: boolean = false;
-  prevPage: number = 0;
-  hasNextPage: boolean = false;
-  nextPage: number = 0;
   @ViewChild('paginator') paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   dataSource: MatTableDataSource<Assignment> = new MatTableDataSource<Assignment>();
+
+  nomFilter = new BehaviorSubject<string>('');
+  matiereFilter = new BehaviorSubject<string>('');
+  renduFilter = new BehaviorSubject<string>('');
 
   constructor(private assignmentsService: AssignmentsService, public dialog: MatDialog, 
     private _liveAnnouncer: LiveAnnouncer, private router:Router) {
@@ -36,11 +36,12 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
+    
+    this.dataSource.sort = this.sort;
   }
 
   ngAfterViewInit() {
     this.loadData();
-    this.dataSource.sort = this.sort;
   }
 
   announceSortChange(sortState: Sort) {
@@ -52,12 +53,19 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
   }
 
   loadData() {
-    this.paginator.page
+    merge(this.sort.sortChange, this.paginator.page, this.nomFilter, this.renduFilter, this.matiereFilter)
       .pipe(startWith({}),
         switchMap(() => {
+          console.log(this.renduFilter.getValue())
           return this.assignmentsService.getAssignmentsPagine(
             this.paginator.pageIndex,
-            this.paginator.pageSize)
+            this.paginator.pageSize, 
+            {
+              nom: this.nomFilter.getValue(),
+              matiere: this.matiereFilter.getValue(),
+              rendu: this.renduFilter.getValue()
+            }
+            )
         }),
         map(data => {
           this.paginator.length = data.totalDocs;
@@ -74,7 +82,22 @@ export class AssignmentsComponent implements OnInit, AfterViewInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.nomFilter.next(filterValue.trim());
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  radioFilter() {
+    this.renduFilter.next(this.labelPosition);
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  dropdownFilter() {
+    this.matiereFilter.next(this.selectedValue);
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();

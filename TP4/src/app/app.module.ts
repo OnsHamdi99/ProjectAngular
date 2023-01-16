@@ -33,8 +33,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { PopupComponent } from './popup/popup.component';
 import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
 
 const routes:Routes = [
   {path: '', component: AssignmentsComponent},
@@ -65,12 +66,12 @@ const routes:Routes = [
     MatSnackBarModule,
     MatSidenavModule,
     BrowserModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule, MatSelectModule,
     MatButtonModule, MatIconModule, MatDividerModule,
     MatInputModule, MatFormFieldModule,
     MatDatepickerModule, MatNativeDateModule, MatListModule,
     MatCardModule, MatCheckboxModule, MatSlideToggleModule,
-    FormsModule, MatSortModule, 
+    FormsModule, MatSortModule,MatRadioModule,
     RouterModule.forRoot(routes), 
     HttpClientModule, MatDialogModule,
     MatToolbarModule,MatTableModule,MatPaginatorModule
