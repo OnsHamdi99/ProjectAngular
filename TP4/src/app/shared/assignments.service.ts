@@ -16,7 +16,8 @@ export class AssignmentsService {
   constructor(private logginService:LoggingService, 
               private http:HttpClient) { }
   
-  url = "http://localhost:8010/api/assignments";
+  url = "https://ovt-project-angular-site.onrender.com/";
+  //http://localhost:8010/api/assignments
   getAssignments():Observable<Assignment[]> {
     return this.http.get<Assignment[]> (this.url);
   }
