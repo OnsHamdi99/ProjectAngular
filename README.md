@@ -10,7 +10,8 @@ Certaines opérations sont accessibles qu'après connexion et/ou inscription, gr
 Ons : https://youtu.be/qfmb8jlVOcQ
 ## Getting Started
 
-Projet hébergé à l'adresse suivante : 
+Projet hébergé à l'adresse suivante :
+https://ovt-project-angular-site.onrender.com/home
 
 Sinon, voici les étapes nécessaires afin de télécharger le projet et le lancer sur votre machine. 
 
